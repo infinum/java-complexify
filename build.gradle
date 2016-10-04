@@ -1,0 +1,33 @@
+group 'co.infinum'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.novoda:bintray-release:0.3.4'
+    }
+}
+
+publish {
+    userOrg = 'infinum'
+    groupId = 'co.infinum'
+    artifactId = 'complexify-java'
+    licences = ['WTFPL']
+    publishVersion = '1.0.0'
+    description = 'Java port of Dan Palmer\'s jquery.complexify.js'
+    website = 'https://github.com/infinum/java-complexify'
+}
