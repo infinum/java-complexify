@@ -22,7 +22,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.novoda:bintray-release:0.3.4'
+        classpath 'com.novoda:bintray-release:0.4.0'
     }
 }
 
@@ -31,7 +31,7 @@ publish {
     groupId = 'co.infinum'
     artifactId = 'complexify-java'
     licences = ['WTFPL']
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     description = 'Java port of Dan Palmer\'s jquery.complexify.js'
     website = 'https://github.com/infinum/java-complexify'
 }
