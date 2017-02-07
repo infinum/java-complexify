@@ -188,7 +188,7 @@ public class Complexify {
     /**
      * Constructor
      *
-     * @param banMode             Use strict or loose comparisons for banned passwords. (default: ComplexifyBnaMode.STRICT)
+     * @param banMode             Use strict or loose comparisons for banned passwords. (default: ComplexifyBanMode.STRICT)
      * @param strengthScaleFactor Required password strength multiplier (default: 1)
      * @param minimumChars        Minimum password length (default: 8)
      */
@@ -282,7 +282,11 @@ public class Complexify {
     }
 
     public void setBanMode(ComplexifyBanMode banMode) {
-        this.banMode = banMode;
+        if (banMode == null) {
+            this.banMode = ComplexifyBanMode.LOOSE;
+        } else {
+            this.banMode = banMode;
+        }
     }
 
     public int getStrengthScaleFactor() {
@@ -306,6 +310,10 @@ public class Complexify {
     }
 
     public void setBanList(String[] banList) {
-        this.banList = banList;
+        if (banList == null) {
+            this.banList = new String[]{};
+        } else {
+            this.banList = banList;
+        }
     }
 }
