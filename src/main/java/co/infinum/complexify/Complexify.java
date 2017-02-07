@@ -173,6 +173,8 @@ public class Complexify {
 
     private int minimumChars;
 
+    private boolean shouldUseBanList;
+
     /**
      * Default constructor.
      * <p>
@@ -180,15 +182,18 @@ public class Complexify {
      * banMode - ComplexifyBanMode.STRICT
      * strengthScaleFactor - 1
      * minimumChars - 8
+     * shouldUseBanList - true
      */
     public Complexify() {
         this(ComplexifyBanMode.STRICT, 1, 8);
     }
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param banMode             Use strict or loose comparisons for banned passwords. (default: ComplexifyBnaMode.STRICT)
+     * ShouldUseBanList is set to true by default.
+     *
+     * @param banMode             Use strict or loose comparisons for banned passwords. (default: ComplexifyBanMode.STRICT)
      * @param strengthScaleFactor Required password strength multiplier (default: 1)
      * @param minimumChars        Minimum password length (default: 8)
      */
@@ -196,6 +201,7 @@ public class Complexify {
         this.banMode = banMode;
         this.strengthScaleFactor = strengthScaleFactor;
         this.minimumChars = minimumChars;
+        this.shouldUseBanList = true;
     }
 
     /**
@@ -209,7 +215,7 @@ public class Complexify {
     public void checkComplexityOfPassword(String password, ComplexityListener listener) {
         double complexity = 0;
 
-        if (!isInBanList(password)) {
+        if (!shouldUseBanList || !isInBanList(password)) {
 
             // Add character complexity
             for (int i = CHARSETS_ARRAY.length - 1; i >= 0; i--) {
@@ -282,7 +288,11 @@ public class Complexify {
     }
 
     public void setBanMode(ComplexifyBanMode banMode) {
-        this.banMode = banMode;
+        if (banMode == null) {
+            this.banMode = ComplexifyBanMode.LOOSE;
+        } else {
+            this.banMode = banMode;
+        }
     }
 
     public int getStrengthScaleFactor() {
@@ -306,6 +316,19 @@ public class Complexify {
     }
 
     public void setBanList(String[] banList) {
-        this.banList = banList;
+        if (banList == null) {
+            this.banList = new String[]{};
+        } else {
+            this.banList = banList;
+        }
     }
+
+    public boolean shouldUseBanList() {
+        return shouldUseBanList;
+    }
+
+    public void setShouldUseBanList(boolean shouldUseBanList) {
+        this.shouldUseBanList = shouldUseBanList;
+    }
+
 }
