@@ -4,9 +4,9 @@ version '1.0.0'
 apply plugin: 'java'
 apply plugin: 'com.novoda.bintray-release' // must be applied after your artifact generating plugin (eg. java / com.android.library)
 
-// have to be compiled with java 7 in order to work on android
-sourceCompatibility = JavaVersion.VERSION_1_7
-targetCompatibility = JavaVersion.VERSION_1_7
+// have to be compiled with java 6 in order to work on android
+sourceCompatibility = JavaVersion.VERSION_1_6
+targetCompatibility = JavaVersion.VERSION_1_6
 
 repositories {
     jcenter()
