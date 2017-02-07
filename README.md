@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-  compile 'co.infinum:complexify-java:1.0.0'
+  compile 'co.infinum:complexify-java:1.0.2'
 }
 ```
 
